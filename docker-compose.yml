@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  rabbit:
+    image: rabbitmq:3.8
+    hostname: rabbit
+
+  consumer:
+    image: consumer:test
+    environment:
+      PYTHONUNBUFFERED: 1
+    build:
+      context: consumer
+    depends_on:
+      - rabbit
+
+  producer:
+    image: producer:test
+    environment:
+      PYTHONUNBUFFERED: 1
+    build:
+      context: producer
+    depends_on:
+      - rabbit
+      - consumer
