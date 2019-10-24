@@ -4,7 +4,6 @@
 
 send_message() {
     message=$1
-    echo "Sending: ${message}"
     python ./send.py "\"${message}\""
     sleep 1 # Just to pause between execution
 }
